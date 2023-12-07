@@ -1,6 +1,6 @@
 Name:		texlive-lyluatex
-Version:	64967
-Release:	2
+Version:	66880
+Release:	1
 Summary:	Commands to include lilypond scores within a (Lua)LaTeX document
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/lyluatex
