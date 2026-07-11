@@ -1,40 +1,23 @@
-Name:		texlive-lyluatex
-Version:	66880
-Release:	1
+%global tl_name lyluatex
+%global tl_revision 79159
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.1.6
+Release:	%{tl_revision}.1
 Summary:	Commands to include lilypond scores within a (Lua)LaTeX document
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/lyluatex
+URL:		https://www.ctan.org/tex-archive/macros/luatex/latex/lyluatex
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lyluatex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/lyluatex.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/lyluatex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/lyluatex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package provides macros for the inclusion of LilyPond
-scores within LuaLaTeX. It calls LilyPond to compile scores,
-then includes the produced files. Dependencies: currfile,
-environ, graphicx, luaotfload, luaoptions, luatexbase,
-metalogo, minibox, pdfpages, xkeyval.
+This package provides macros for the inclusion of LilyPond scores within
+LuaLaTeX. It calls LilyPond to compile scores, then includes the
+produced files. Dependencies: currfile, environ, graphicx, luaotfload,
+luaoptions, luatexbase, metalogo, minibox, pdfpages, xkeyval.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/luatex/lyluatex
-%{_texmfdistdir}/scripts/lyluatex
-%doc %{_texmfdistdir}/doc/support/lyluatex
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
